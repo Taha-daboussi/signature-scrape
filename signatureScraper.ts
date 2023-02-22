@@ -3,12 +3,12 @@ import path from 'path'
 import {Utils} from './utils';
 const extractUrls = require("extract-urls");
 const colors = require('colors/safe')
+import { myChecks } from './myChecks';
 export class signatureScraper {
-    cliArgs = process.argv.slice(2);
-    folderToScrape = this.cliArgs[0] 
+    folderToScrape = 'siteDocs.site'
     directoryPath: string = path.join(__dirname, this.folderToScrape);
     alreadyCheckedWallet = false
-    whiteListChecks = ['0x799B641C7F87a115419d0bfdb4891159E8940E88','drops','/graphql','eligible','api/check','presale', 'whitelist', 'white', 'check', 'sale', 'web3', 'premint',  'allowlist', 'address', 'getwhitelist',  'getpresale', 'getpremint', 'signature', '/api', 'waitlist', 'merkle', 'fetch(', 'userAddress', 'sender', 'numberOfTokens','check' , 'mint' , 'ether' , 'etherscan' , 'gas' , 'limit' , 'gaslimit' , 'gas limit','contract','address','proof']
+    whiteListChecks = myChecks.myChecksArray()
     constructor() {
     }
     /**

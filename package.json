@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "monitor": "npx ts-node getFiles.ts siteDocs.site",
-    "scrape": "npx ts-node runScraper.ts siteDocs.site"
+    "monitor": "npx ts-node runScraper.ts monitor",
+    "scrape": "npx ts-node runScraper.ts scraper"
   },
   "keywords": [],
   "author": "",

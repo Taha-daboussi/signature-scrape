@@ -6,9 +6,10 @@ const {exec} = require('child_process');
 export class getWebsiteContent extends signatureScraper {
     directoryPath: string = path.join(__dirname, this.folderToScrape);
     folderToScrape2: any
-    siteNameToMonitor = 'https://seeliesnft.com'
-    constructor() {
+    siteNameToMonitor: string
+    constructor(siteNameToMonitor: string) {
         super()
+        this.siteNameToMonitor = siteNameToMonitor
     }
     /**
      * 
@@ -111,7 +112,7 @@ export class getWebsiteContent extends signatureScraper {
             Utils.log('--------------------------------------There is something worng with files , there is some files missing to be able to compare the 2 files--------------------------------------', true)
         }
         for (var i = 0; i < folders.folder1.length; i++) {
-            if (folders.folder1[i].fileName === folders.folder2[i].fileName) {
+            if (folders.folder1[i]?.fileName === folders.folder2[i]?.fileName) {
                 if (Math.abs(folders.folder1[i].fileLength - folders.folder2[i].fileLength) > 5) {
                     Utils.log('There is a length mismatch in this folder name : ' + folders.folder1[i].fileName, true)
                     const folderToScrapePath = folders.folder1[i].fileName.includes('.js') ? this.folderToScrape2 + '\\js' : this.folderToScrape2
@@ -124,10 +125,3 @@ export class getWebsiteContent extends signatureScraper {
         fs.renameSync(this.getDirName(this.folderToScrape2), this.getDirName(this.folderToScrape))
     }
 }
-// (async () => {
-//     while (true) {
-//         Utils.log('Getting Website File...')
-//         await new getWebsiteContent().writeWebsiteFiles()
-//         await Utils.sleep(3000)
-//     }
-// })()
